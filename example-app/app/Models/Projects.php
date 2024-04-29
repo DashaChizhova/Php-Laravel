@@ -11,4 +11,6 @@ class Projects extends Model
 
     //создаем, чтобы потом закинуть в нее данные, которые добавятся в БД projects
     protected $fillable = ['project_name'];
+
+    
 }

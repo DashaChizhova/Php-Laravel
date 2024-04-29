@@ -25,6 +25,7 @@ class ProjectsController extends Controller
      */
     public function store(ProjectStoreRequest $request)
     {
+        //Добавление проекта 
         $addProject = Projects::create($request->validated());
 
         return new ProjectsResource($addProject);
@@ -35,7 +36,7 @@ class ProjectsController extends Controller
      */
     public function show(string $id)
     {
-        //
+        
     }
 
     /**

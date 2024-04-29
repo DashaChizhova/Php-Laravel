@@ -5,8 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-
-class ProjectStoreRequest extends FormRequest
+class TasksStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,17 +23,22 @@ class ProjectStoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'project_name' => 'required|max:255',
+            'project_id' => 'required',
+            'status_id' => 'required',
+            'type_id' => 'required',
+            'title' => 'required|max:255',
+            'description' => 'required|max:255',
         ];
     }
     public function messages(): array
     {
         return [
-            'project_name.required' => 'Не заполнено название проекта',
-            
+            'project_id.required' => 'Не заполнен проект',
+            'status_id.required' => 'Не заполнен статус',
+            'type_id.required' => 'Не заполнен тип',
+            'title.required' => 'Не заполнено название',
+            'description.required' => 'Не заполнено описание',
             
         ];
     }
-    
-
 }
