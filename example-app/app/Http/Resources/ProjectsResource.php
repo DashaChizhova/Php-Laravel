@@ -12,14 +12,25 @@ class ProjectsResource extends JsonResource
      *
      * @return array<string, mixed>
      */
+
+     
+        //выбираем данные, которые должны возвращаться (cморя откуда запрос, потому что в апи проджекст не нужен список с задачами)
     public function toArray(Request $request): array
     {
-        //выбираем данные, которые должны возвращаться
-        return [
-            'id' => $this ->id,
-            'project_name' => $this ->project_name,
-            
+        if ($request->is('api/tasks/*')) {
+            return [
+                'id' => $this->id,
+                'project_name' => $this->project_name,
+                'lists' => $this->lists,
+            ];
+        } else {
+            return [
+                'id' => $this->id,
+                'project_name' => $this->project_name,
+            ];
+        }
 
-        ];
+
+       
     }
 }

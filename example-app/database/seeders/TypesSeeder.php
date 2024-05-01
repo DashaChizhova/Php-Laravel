@@ -1,5 +1,5 @@
 <?php
-
+//Заполнение типов задач
 namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;

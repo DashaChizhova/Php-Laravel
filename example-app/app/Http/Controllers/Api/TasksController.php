@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\ProjectsResource;
+use App\Models\Projects;
 use Illuminate\Http\Request;
 use App\Models\Tasks;
 use \App\Http\Resources\TasksResource;
@@ -23,31 +25,34 @@ class TasksController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(TasksStoreRequest $request)
-    {
-        $addTask = Tasks::create($request->validated());
 
-        return new TasksResource($addTask);
+    public function store( $id, TasksStoreRequest $request)
+    {   
+        $project = Projects::findOrFail($id);
+        $task = Tasks::create($request->validated());
+        $task->project_id =  $project->id;
+        $task->save();
+      
+        return new TasksResource($task);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-      
-
+        //получение списка задач по проекту
+        return new ProjectsResource(Projects::with('lists')->findOrFail($id));
        
     }
-    
-        
-    
-
     /**
      * Update the specified resource in storage.
      */
-    public function update(TasksStoreRequest $request, Tasks $task)
-    {
+ 
+    public function update(TasksStoreRequest $request, $id)
+    {   
+        //обновление
+        $task = Tasks::findOrFail($id);
         $task->update($request->validated());
 
         return new TasksResource($task);
@@ -56,8 +61,10 @@ class TasksController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Tasks $task)
-    {
+    public function destroy($id)
+    {   
+        //удаление
+        $task = Tasks::findOrFail($id);
         $task->delete();
 
         return response(null, Response::HTTP_NO_CONTENT);

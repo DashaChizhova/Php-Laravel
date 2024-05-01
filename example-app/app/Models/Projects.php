@@ -9,8 +9,11 @@ class Projects extends Model
 {
     use HasFactory;
 
-    //создаем, чтобы потом закинуть в нее данные, которые добавятся в БД projects
+    //создаем, чтобы потом закинуть в нее данные для проверки, которые добавятся в БД projects
     protected $fillable = ['project_name'];
-
-    
+//связи с таб задачи
+    public function lists()
+    {
+        return $this -> hasMany(Tasks::class, 'project_id', 'id');
+    }
 }

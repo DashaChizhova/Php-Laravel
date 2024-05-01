@@ -15,7 +15,8 @@ class TasksResource extends JsonResource
     public function toArray(Request $request): array
     {
          //выбираем данные, которые должны возвращаться
-         return [
+      
+        return [
             
             'id' => $this ->id,
             'project_id' => $this ->project_id,
@@ -23,8 +24,9 @@ class TasksResource extends JsonResource
             'type_id' => $this -> type_id,
             'title' => $this -> title,
             'description' => $this -> description,
-            
+            // 'lists'=>$this ->lists,
 
         ];
+    
     }
 }

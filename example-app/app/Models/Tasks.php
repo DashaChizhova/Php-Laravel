@@ -11,4 +11,9 @@ class Tasks extends Model
    
     
     protected $fillable = ['project_id','status_id', 'type_id', 'title', 'description'];
+
+    public function lists()
+    {
+        return $this -> hasMany(Projects::class, 'id', 'project_id');
+    }
 }

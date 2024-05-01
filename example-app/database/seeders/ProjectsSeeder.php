@@ -1,5 +1,5 @@
 <?php
-
+//Заполнение данными таблицы проектов
 namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;

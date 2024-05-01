@@ -1,4 +1,5 @@
 <?php
+//Заполнение данными статусов задачи
 
 namespace Database\Seeders;
 

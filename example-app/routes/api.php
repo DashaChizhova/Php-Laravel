@@ -6,7 +6,7 @@ use \App\Http\Controllers\Api\ProjectsController;
 use \App\Http\Controllers\Api\TasksController;
 
 Route::get('/', function () {
-    return 'g';
+    return 'api';
 });
 
 Route::apiResources([
@@ -15,3 +15,8 @@ Route::apiResources([
 Route::apiResources([
     'tasks' => TasksController::class,
 ]);
+Route::post('project', [ProjectsController::class, 'store']);
+Route::get('tasks/{project_id}', [TasksController::class, 'show']);
+Route::post('tasks/{project_id}', [TasksController::class, 'store']);
+Route::put('task/{id}', [TasksController::class, 'update']);
+Route::delete('task/{id}', [TasksController::class, 'destroy']);

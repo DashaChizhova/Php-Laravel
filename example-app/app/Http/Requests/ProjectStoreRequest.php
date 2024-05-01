@@ -31,8 +31,6 @@ class ProjectStoreRequest extends FormRequest
     {
         return [
             'project_name.required' => 'Не заполнено название проекта',
-            
-            
         ];
     }
     
